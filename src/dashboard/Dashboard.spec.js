@@ -1,18 +1,19 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Dashboard from './Dashboard'
+import '@testing-library/jest-dom/extend-expect'
 
 test("Gate defaults to close: false and locked: false", () => {
     const { getByText } = render(<Dashboard />);
-    getByText(/unlocked/i);
-    getByText(/open/i);
+    expect(getByText(/unlocked/i)).toBeVisible()
+    expect(getByText(/open/i)).toBeVisible()
 }) 
 
 test("shows the controls and display", () => {
     const { getByText } = render(<Dashboard />);
 
-    getByText(/unlocked|locked/i)
-    getByText(/open|closed/i)
-    getByText(/lock gate|unlock gate/i)
-    getByText(/open gate|close gate/i)
+    expect(getByText(/unlocked|locked/i)).toBeVisible()
+    expect(getByText(/open|closed/i)).toBeVisible()
+    expect(getByText(/lock gate|unlock gate/i)).toBeVisible()
+    expect(getByText(/open gate|close gate/i)).toBeVisible()
 }) 
